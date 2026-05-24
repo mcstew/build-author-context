@@ -1,4 +1,4 @@
 interface:
-  display_name: "Build Author Profile"
-  short_description: "Create source-backed author operating profiles"
-  default_prompt: "Use $build-author-profile to create my author operating profile from public links, files, and a guided interview."
+  display_name: "Build Author Context"
+  short_description: "Create source-backed author context files"
+  default_prompt: "Use $build-author-context to create my author context file from public links, files, and a guided interview."

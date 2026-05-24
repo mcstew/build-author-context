@@ -1,8 +1,8 @@
-# Build Author Profile
+# Build Author Context
 
-`build-author-profile` is an agent-facing skill for creating a durable author operating profile: a Markdown context file that helps an AI agent collaborate with an author across creative work, editorial work, publishing operations, packaging, launch, marketing, vendor coordination, analytics, and catalog management.
+`build-author-context` is an agent-facing skill for creating `author-context.md`: a durable Markdown artifact that helps an AI agent collaborate with an author across creative work, editorial work, publishing operations, packaging, launch, marketing, vendor coordination, analytics, and catalog management.
 
-The point is not to hand an author a giant blank workbook and make them suffer through it. The point is to have an agent gather as much useful context as possible first, prefill the profile from public and provided sources, label uncertainty clearly, and then guide the author through only the remaining gaps in a staged, resumable interview.
+The point is not to hand an author a giant blank workbook and make them suffer through it. The point is to have an agent gather as much useful context as possible first, prefill the author context from public and provided sources, label uncertainty clearly, and then guide the author through only the remaining gaps in a staged, resumable interview.
 
 ## What This Repo Contains
 
@@ -16,13 +16,13 @@ This repo intentionally keeps the functional skill compact. The README explains 
 Use this skill when the user asks for any of the following:
 
 - Create an author context file.
-- Build an author operating profile.
+- Build an author context file.
 - Onboard an AI agent for writing, editing, publishing, or author-business support.
-- Fill out an indie-author workbook or author profile.
+- Fill out an indie-author context workbook.
 - Gather author information from public sources and turn it into usable context.
-- Create profiles for pen names, series, universes, projects, style, process, publishing operations, marketing, vendors, or agent permissions.
+- Create context records for pen names, series, universes, projects, style, process, publishing operations, marketing, vendors, or agent permissions.
 - Help an author define what an agent may do autonomously, what requires confirmation, and what is off limits.
-- Resume a partially completed author profile interview.
+- Resume a partially completed author context interview.
 
 Also use it when an author says something like:
 
@@ -35,7 +35,7 @@ I want an assistant to know my pen names, style, projects, boundaries, and launc
 ```
 
 ```text
-Can you scrape my public author info and build a profile I can edit?
+Can you scrape my public author info and build author-context.md so I can edit it?
 ```
 
 ## What The Skill Produces
@@ -43,7 +43,7 @@ Can you scrape my public author info and build a profile I can edit?
 The expected output is a Markdown file, usually named:
 
 ```text
-author-operating-profile.md
+author-context.md
 ```
 
 That file is designed to become a durable working memory for author-facing agents. It includes:
@@ -52,10 +52,10 @@ That file is designed to become a durable working memory for author-facing agent
 - A source ledger for public links, provided files, and author statements.
 - A resume state so the author can pause and continue later.
 - Open confirmations for anything that needs author approval.
-- A Master Profile for the author/business.
-- Repeatable Pen Name Profiles.
-- Repeatable Series or Universe Profiles.
-- Repeatable Project Profiles.
+- Master Context for the author/business.
+- Repeatable Pen Name Context records.
+- Repeatable Series or Universe Context records.
+- Repeatable Project Context records.
 - Creative fingerprint and prose style preferences.
 - Process, collaboration, and revision workflow preferences.
 - Production, packaging, metadata, and distribution strategy.
@@ -64,7 +64,7 @@ That file is designed to become a durable working memory for author-facing agent
 - Agent Protocol and Memory Rules.
 - Source-of-truth library pointers.
 
-The profile is useful even when incomplete. A good version 0.1 with source-backed facts, known gaps, and clear next questions is better than a perfect-looking file full of guesses.
+The author context is useful even when incomplete. A good version 0.1 with source-backed facts, known gaps, and clear next questions is better than a perfect-looking file full of guesses.
 
 ## Core Operating Idea
 
@@ -86,9 +86,9 @@ If you are an agent using this repo, do this:
    - Website, Amazon Author Central, retailer pages, Goodreads, BookBub, newsletter, social links, interviews, press pages, or catalog pages.
    - Any files/folders to inspect, such as bios, series bibles, style sheets, metadata spreadsheets, launch plans, or backlist docs.
    - Whether web research is allowed.
-   - Where the finished Markdown profile should live.
+   - Where the finished `author-context.md` file should live.
 3. Gather public and provided context before asking deep questions.
-4. Create or update `author-operating-profile.md`.
+4. Create or update `author-context.md`.
 5. Add a Source Ledger.
 6. Fill what can be supported.
 7. Mark unknowns and assumptions with confidence labels.
@@ -104,13 +104,13 @@ Clone or copy this repo into the skills directory your agent uses. For Codex-sty
 
 ```bash
 mkdir -p ~/.codex/skills
-git clone https://github.com/mcstew/build-author-profile.git ~/.codex/skills/build-author-profile
+git clone https://github.com/mcstew/build-author-context.git ~/.codex/skills/build-author-context
 ```
 
 Then invoke it explicitly:
 
 ```text
-Use $build-author-profile to create my author operating profile from my website, Amazon page, and provided notes.
+Use $build-author-context to create my author context file from my website, Amazon page, and provided notes.
 ```
 
 ### Any Agentic AI System
@@ -118,18 +118,18 @@ Use $build-author-profile to create my author operating profile from my website,
 If your agent does not support skill folders, point it directly at `SKILL.md` and tell it:
 
 ```text
-Use the instructions in this file as your operating procedure for building my author profile.
+Use the instructions in this file as your operating procedure for building my author context file.
 ```
 
-The skill is written to be self-contained enough for that mode. The agent should treat the profile schema and workflow inside `SKILL.md` as binding instructions.
+The skill is written to be self-contained enough for that mode. The agent should treat the context schema and workflow inside `SKILL.md` as binding instructions.
 
 ## Expected Agent Workflow
 
 ### 1. Start Or Resume
 
-If an existing profile exists, read it first. Preserve confirmed facts, prior source labels, open confirmations, and the resume state.
+If an existing author context exists, read it first. Preserve confirmed facts, prior source labels, open confirmations, and the resume state.
 
-If no profile exists, create one. Default to `author-operating-profile.md` unless the user requests a different path.
+If no author context exists, create one. Default to `author-context.md` unless the user requests a different path.
 
 ### 2. Gather Sources
 
@@ -142,9 +142,9 @@ Prioritize sources in this order:
 5. Interviews, podcast pages, press kits, conference bios, guest posts, and public social bios.
 6. Public metadata, blurbs, series pages, cover/package cues, copyright pages, and back matter samples.
 
-The agent should extract only pertinent author-context information. It should not scrape indiscriminately or copy large copyrighted text into the profile.
+The agent should extract only pertinent author-context information. It should not scrape indiscriminately or copy large copyrighted text into the author context.
 
-### 3. Prefill The Profile
+### 3. Prefill The Context
 
 Use sources to prefill:
 
@@ -226,7 +226,7 @@ On resume, summarize what is already known and continue from the current module.
 
 This skill is designed for author-business context, which can include sensitive information. Agents must be conservative.
 
-Never copy secrets into the profile:
+Never copy secrets into the author context:
 
 - Passwords.
 - API keys.
@@ -255,9 +255,9 @@ Ask before:
 - Revealing private pen-name links.
 - Making legal, tax, or financial decisions.
 
-## What Makes A Good Finished Profile
+## What Makes Good Author Context
 
-A good profile should be:
+A good `author-context.md` should be:
 
 - Source-backed.
 - Easy for another agent to scan.
@@ -268,7 +268,7 @@ A good profile should be:
 - Useful even if only partially complete.
 - Designed to evolve.
 
-The profile should help an agent answer:
+The author context should help an agent answer:
 
 - Who is this author?
 - What do they write?
@@ -281,22 +281,22 @@ The profile should help an agent answer:
 - What must the agent always ask before doing?
 - How should the agent remember new preferences?
 
-## Minimum Viable Profile
+## Minimum Viable Context
 
 If public research comes up dry, the agent should still create a useful version 0.1 by asking:
 
-1. What name or pen names should this profile support, and which are public or private?
+1. What name or pen names should this author context support, and which are public or private?
 2. What do you most want an author agent to help with in the next 30 to 90 days?
 3. What should an agent never do, generate, reveal, or decide without asking?
 4. What are your active projects, and which one matters most right now?
 5. Where are the source-of-truth files or notes future agents should consult?
 
-Then create the first profile and continue filling it over time.
+Then create the first author context and continue filling it over time.
 
 ## Example User Prompts
 
 ```text
-Use $build-author-profile. My author name is Jane Example. Start from janeexample.com, my Amazon Author Central profile, and the metadata spreadsheet in this folder. Build a profile I can review.
+Use $build-author-context. My author name is Jane Example. Start from janeexample.com, my Amazon Author Central profile, and the metadata spreadsheet in this folder. Build author-context.md so I can review it.
 ```
 
 ```text
@@ -304,16 +304,16 @@ Use this skill to create an author context file for my romance pen name. Please 
 ```
 
 ```text
-Resume my author operating profile. Read the existing Markdown file, summarize what is already confirmed, and continue with the next unanswered section.
+Resume my author context file. Read the existing Markdown file, summarize what is already confirmed, and continue with the next unanswered section.
 ```
 
 ```text
-Build the smallest useful author profile today. I only have 20 minutes, so ask the minimum questions needed to make a version 0.1.
+Build the smallest useful author context today. I only have 20 minutes, so ask the minimum questions needed to make a version 0.1.
 ```
 
-## Maintaining The Profile
+## Maintaining Author Context
 
-Treat the profile as a living document. Update it when:
+Treat the author context as a living document. Update it when:
 
 - A new pen name is added.
 - A series changes direction.
@@ -334,4 +334,4 @@ When updating, preserve:
 
 ## Repository URL
 
-GitHub: https://github.com/mcstew/build-author-profile
+GitHub: https://github.com/mcstew/build-author-context
