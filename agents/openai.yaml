@@ -1,4 +1,4 @@
 interface:
   display_name: "Build Author Context"
-  short_description: "Create source-backed author context files"
-  default_prompt: "Use $build-author-context to create my author context file from public links, files, and a guided interview."
+  short_description: "Rapidly onboard an author-facing agent"
+  default_prompt: "Use $build-author-context to make this agent ready for my highest-priority author tasks using public links, provided files, and a focused interview."
